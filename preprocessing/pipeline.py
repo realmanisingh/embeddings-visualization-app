@@ -1,4 +1,6 @@
 import nltk
+import re
+from typing import List
 
 class Preprocess:
     """
@@ -26,6 +28,21 @@ class Preprocess:
         lower_text = self.text.lower()
         
         return lower_text
+    
+    def tokenize(self, text: str) -> List[str]:
+        """
+        Creates word-level tokens of the text
+        
+        Parameters:
+            text (str): text that has been lowercased
+        
+        Returns:
+            tokens (List[str]): list of 
+        """
         
     
     
+test = "Hello. Hello. Wherever you are. Are you dancing by the dance floor? Or drinking by the bar! 16 bands on the bed."
+text = re.sub('[^.A-Za-z0-9]',' ', test)
+
+print(text)

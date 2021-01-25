@@ -18,18 +18,36 @@ class Preprocess:
         """
         self.text = text
     
-    def lowercase(self) -> str:
+    def lowercase(self, text: str) -> str:
         """
         Lowercases the text
+        
+        Parameters:
+            text (str): the text that will be lowercased
         
         Returns:
             lower_text (str): the lowercased text
         """
-        lower_text = self.text.lower()
+        lower_text = text.lower()
         
         return lower_text
     
-    def tokenize(self, text: str) -> List[str]:
+    def remove_symbols_and_numbers(self, text: str) -> str:
+        """
+        Removes symbols and numbers from the text
+        
+        Parameters:
+            text (str): the text that will have symbols and numbers removed
+            
+        Returns:
+            clean_text (str): the text that has the symbols and numbers removed
+        """
+        
+        clean_text = re.sub('[^.?!A-Za-z]',' ', text)
+        
+        return clean_text
+    
+    def tokenize(self) -> List[str]:
         """
         Creates word-level tokens of the text
         
@@ -42,7 +60,10 @@ class Preprocess:
         
     
     
-test = "Hello. Hello. Wherever you are. Are you dancing by the dance floor? Or drinking by the bar! 16 bands on the bed."
-text = re.sub('[^.A-Za-z0-9]',' ', test)
+test_string = "Hello. Hello. Wherever you are. Are you dancing by the dance floor? Or drinking by the bar! 16 bands on the bed. $4"
 
-print(text)
+test_pipeline = Preprocess(test_string)
+test_output = test_pipeline.lowercase(test_string)
+test_output = test_pipeline.remove_symbols_and_numbers(test_string)
+
+print(test_output)

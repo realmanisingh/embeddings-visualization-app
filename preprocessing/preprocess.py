@@ -47,16 +47,21 @@ class Preprocess:
         
         return clean_text
     
-    def tokenize(self) -> List[str]:
+    def tokenize(self, text) -> List[str]:
         """
         Creates word-level tokens of the text
         
         Parameters:
-            text (str): text that has been lowercased
+            text (str): text that has been lowercased and cleaned (symbols and numbers removed)
         
         Returns:
             tokens (List[str]): list of 
         """
+        tokens = re.split('[.!?]', text)
+        
+        return tokens
+        
+        
         
     
     
@@ -66,4 +71,5 @@ test_pipeline = Preprocess(test_string)
 test_output = test_pipeline.lowercase(test_string)
 test_output = test_pipeline.remove_symbols_and_numbers(test_string)
 
-print(test_output)
+
+print(test_pipeline.tokenize(test_output))

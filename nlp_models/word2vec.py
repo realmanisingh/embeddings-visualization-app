@@ -1,7 +1,7 @@
 from gensim.models import Word2Vec
-#from preprocessing.preprocess import Preprocess
 from typing import List
 from pandas import DataFrame
+from preprocessing import preprocess
 
 def create_word2Vec(tokens: List[str]) -> DataFrame:
     """

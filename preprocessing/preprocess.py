@@ -1,4 +1,5 @@
 import nltk
+nltk.download('punkt')
 import re
 from typing import List
 
@@ -49,7 +50,7 @@ class Preprocess:
     
     def tokenize(self, text) -> List[str]:
         """
-        Creates word-level tokens of the text
+        Creates word-level tokens of each sentence in the text
         
         Parameters:
             text (str): text that has been lowercased and cleaned (symbols and numbers removed)
@@ -57,7 +58,8 @@ class Preprocess:
         Returns:
             tokens (List[str]): list of 
         """
-        tokens = re.split('[.!?]', text)
+        sentences = re.split('[.!?]', text)        
+        tokens = [nltk.word_tokenize(sentence) for sentence in sentences]
         
         return tokens
         
@@ -65,11 +67,12 @@ class Preprocess:
         
     
     
-test_string = "Hello. Hello. Wherever you are. Are you dancing by the dance floor? Or drinking by the bar! 16 bands on the bed. $4"
+test_string = "Hello. Hello. Wherever you are. Are you dancing by the dance floor? Or drinking by the bar! 16 bands on the bed."
 
 test_pipeline = Preprocess(test_string)
-test_output = test_pipeline.lowercase(test_string)
-test_output = test_pipeline.remove_symbols_and_numbers(test_string)
+test_lower = test_pipeline.lowercase(test_string)
+test_remove = test_pipeline.remove_symbols_and_numbers(test_lower)
+test_tokens = test_pipeline.tokenize(test_remove)
 
 
-print(test_pipeline.tokenize(test_output))
+print(test_tokens)

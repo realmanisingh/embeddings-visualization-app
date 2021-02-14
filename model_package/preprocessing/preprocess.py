@@ -63,16 +63,3 @@ class Preprocess:
         
         return tokens
         
-        
-        
-    
-    
-test_string = "Hello. Hello. Wherever you are. Are you dancing by the dance floor? Or drinking by the bar! 16 bands on the bed."
-
-test_pipeline = Preprocess(test_string)
-test_lower = test_pipeline.lowercase(test_string)
-test_remove = test_pipeline.remove_symbols_and_numbers(test_lower)
-test_tokens = test_pipeline.tokenize(test_remove)
-
-
-print(test_tokens)
